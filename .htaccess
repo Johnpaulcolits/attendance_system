@@ -1,0 +1,14 @@
+Options -Indexes
+
+RewriteEngine On
+
+# Route /registration/signup → /registration/view/signup.php
+RewriteRule ^signup$ view/signup.php [L]
+
+# Remove .php extension from URL (supports subfolders)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.+)$ $1.php [L]
+
+# Custom 404 page
+ErrorDocument 404 /registration/404.php
