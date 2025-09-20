@@ -2,8 +2,24 @@ Options -Indexes
 
 RewriteEngine On
 
-# Route /registration/signup → /registration/view/signup.php
+#View Directory
+# Route /attendance_system/signup → /attendance_system/view/signup.php
 RewriteRule ^signup$ view/signup.php [L]
+# Route /attendance_system/login → /attendance_system/view/login.php
+RewriteRule ^signin$ view/signin.php [L]
+
+#Auth Directory
+RewriteRule  ^db$ auth/db.php [L]
+
+
+#Model Directory
+RewriteRule ^User.Model$ model/User.Model.php [L]
+
+
+#Controller Directory
+RewriteRule ^User.Controller$ controller/User.Controller.php [L]
+
+
 
 # Remove .php extension from URL (supports subfolders)
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -11,4 +27,4 @@ RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^(.+)$ $1.php [L]
 
 # Custom 404 page
-ErrorDocument 404 /registration/404.php
+ErrorDocument 404 /attendance_system/404.php

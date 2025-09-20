@@ -1,0 +1,6 @@
+{
+    "require": {
+        "robinvdvleuten/ulid": "^5.0",
+        "firebase/php-jwt": "^6.11"
+    }
+}

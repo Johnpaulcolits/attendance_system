@@ -6,7 +6,7 @@
     <title>Sign Up</title>
 </head>
 <body>
-    <form action="">
+    <form id="registration">
         <label for="Student ID">Student ID: </label> 
         <input type="text" name="student_id" id="student_id" required><br>
         <label for="Email address">Email Address</label>
@@ -37,5 +37,32 @@
         <input type="text" name="cinfirmpass" id="cinfirmpass" required><br>
         <input type="submit" value="Sign Up">
     </form>
+
+
+    <script>
+        document.getElementById("registration").addEventListener("submit", function(e){
+            e.preventDefault();
+
+            const form = e.target;
+            const formData = e.formData(form);
+
+            fetch("User.Controller", {
+                method : "POST",
+                body : formData
+            })
+
+            .then(response => response.json())
+            .then(data=>{
+                console.log("Server Response:", data);
+                alert(data.message);
+            })
+            .catch(error=>{
+                console.error("Error", error);
+                alert("Something Went Wrong.");
+            })
+
+
+        });
+    </script>
 </body>
 </html>
