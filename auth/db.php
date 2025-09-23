@@ -1,5 +1,12 @@
 <?php
 
+
+// If already logged in, redirect to dashboard
+if (isset($_SESSION['jwt'])) {
+    header("Location: dashboard");
+    exit;
+}
+
 $host = "localhost";
 $username = "root";
 $password = "";

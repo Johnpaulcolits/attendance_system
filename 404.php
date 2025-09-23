@@ -7,5 +7,6 @@
 </head>
 <body>
    <h1>This is an 404 PAGE</h1>
+    Back to Dashbaord <a href="index">Click</a>
 </body>
 </html>

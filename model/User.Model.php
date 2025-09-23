@@ -1,5 +1,11 @@
 <?php
+// session_start();
 
+// // If already logged in, redirect to dashboard
+// if (isset($_SESSION['jwt'])) {
+//     header("Location: dashboard");
+//     exit;
+// }
 
 class User{
     private $conn;
@@ -24,11 +30,30 @@ class User{
     }
 
     public function CheckUser($email, $idnumber){
+        $stmt = $this->conn->prepare("SELECT * FROM users WHERE email = ? OR idnumber = ?");
+        $stmt->bind_param("ss", $email, $idnumber);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
+        $userExist = $result->num_rows > 0;
+
+        $stmt->close();
+        return $userExist;
 
     }
 
-    public function login($email, $password){
-        
+   public function login($email, $password){
+    $stmt = $this->conn->prepare("SELECT * FROM users WHERE email = ? LIMIT 1");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();   
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
+    $stmt->close();
+
+    if ($user && password_verify($password, $user["password"])) {
+        return $user; // return the user row if login success
     }
+    return false;
+}
+
 }
