@@ -1,11 +1,4 @@
 <?php
-// session_start();
-
-// // If already logged in, redirect to dashboard
-// if (isset($_SESSION['jwt'])) {
-//     header("Location: dashboard");
-//     exit;
-// }
 
 class User{
     private $conn;
@@ -55,5 +48,9 @@ class User{
     }
     return false;
 }
+
+
+
+
 
 }

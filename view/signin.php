@@ -63,7 +63,8 @@ if (isset($_SESSION['jwt']) || isset($_COOKIE['auth_token'])) {
                 alert(data.message);
 
                 if(data.status === "success"){
-                    window.location.href = "dashboard";
+                    // window.location.href = "dashboard";
+                    window.location.href = data.redirect;
                 }
             })
             .catch(error => {

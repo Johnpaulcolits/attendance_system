@@ -14,6 +14,15 @@ RewriteRule ^logout$ view/logout.php [L]
 RewriteRule ^dashboard$ view/students/dashboard.php [L]
 # RewriteRule ^dashboard$ /attendance_system/ [R=302,L]
 
+#View/Admin Directory
+RewriteRule ^privatenexus$ view/admin/privatenexus.php [L]
+# RewriteRule ^dashboard$ /attendance_system/ [R=302,L]
+
+#View/SuperAdmin Directory
+RewriteRule ^overseer$ view/superadmin/overseer.php [L]
+# RewriteRule ^dashboard$ /attendance_system/ [R=302,L]
+
+
 #Auth Directory
 RewriteRule  ^db$ auth/db.php [L]
 

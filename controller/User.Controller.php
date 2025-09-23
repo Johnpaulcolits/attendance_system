@@ -46,7 +46,8 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
                     'iat' => time(),
                     'exp' => time() + (60 * 60 * 24 * 7), // 7 days
                     'user_id' => $userData['id'],
-                    'email' => $userData['email']
+                    'email' => $userData['email'],
+                    'role' => $userData['role']
                 ];
 
                 $jwt = JWT::encode($payload, $secret_key, 'HS256');
@@ -61,7 +62,24 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
                     'samesite' => 'Strict'
                 ]);
 
-                echo json_encode(["status" => "success", "message" => "Login Successful."]);
+
+              switch ($userData["role"]) {
+    case "admin":
+        $redirect = "privatenexus";
+        break;
+    case "superadmin":
+        $redirect = "overseer";
+        break;
+    case "student":
+        $redirect = "dashboard";
+        break;
+    default:
+        $redirect = "signin";
+        break;
+}
+
+
+                echo json_encode(["status" => "success", "message" => "Login Successful.", "redirect" => $redirect]);
                
             }else{
                  echo json_encode(["status" => "error", "message" => "Invalid Credentials."]);
