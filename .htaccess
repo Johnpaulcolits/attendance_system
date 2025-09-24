@@ -2,6 +2,9 @@ Options -Indexes
 
 RewriteEngine On
 
+
+
+
 #View Directory
 # Route /attendance_system/signup → /attendance_system/view/signup.php
 RewriteRule ^signup$ view/signup.php [L]
@@ -9,6 +12,10 @@ RewriteRule ^signup$ view/signup.php [L]
 RewriteRule ^signin$ view/signin.php [L]
 # Route /attendance_system/logout → /attendance_system/view/logout.php
 RewriteRule ^logout$ view/logout.php [L]
+RewriteRule ^details$ view/details.php [L]
+
+
+
 
 #View/Students Directory
 RewriteRule ^dashboard$ view/students/dashboard.php [L]
@@ -24,7 +31,11 @@ RewriteRule ^overseer$ view/superadmin/overseer.php [L]
 
 
 #Auth Directory
-RewriteRule  ^db$ auth/db.php [L]
+# RewriteRule  ^db$ auth/db.php [L]
+#Prevent to access all the files inside Auth folder
+RewriteRule ^auth/ - [F,L]
+RewriteRule ^vendor/ - [F,L]
+
 
 
 #Model Directory
@@ -42,4 +53,5 @@ RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^(.+)$ $1.php [L]
 
 # Custom 404 page
+ErrorDocument 403 /attendance_system/403.php
 ErrorDocument 404 /attendance_system/404.php
