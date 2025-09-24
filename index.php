@@ -62,7 +62,7 @@ if (isset($_SESSION['jwt']) || isset($_COOKIE['auth_token'])) {
                     </div>
                     <span class="ml-3 text-xl font-semibold text-gray-800">Attendance System</span>
                 </div>
-                <button class="bg-gradient-to-r from-skyblue to-bluegreen text-white px-6 py-2 rounded-lg font-medium hover:opacity-90 transition-opacity " onclick="window.location.href='./view/signin';">
+                <button class="bg-gradient-to-r from-skyblue to-bluegreen text-white px-6 py-2 rounded-lg font-medium hover:opacity-90 transition-opacity " onclick="window.location.href='signin';">
                     Login
                     
                 </button>

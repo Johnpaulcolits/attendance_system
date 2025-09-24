@@ -13,6 +13,7 @@ RewriteRule ^signin$ view/signin.php [L]
 # Route /attendance_system/logout → /attendance_system/view/logout.php
 RewriteRule ^logout$ view/logout.php [L]
 RewriteRule ^details$ view/details.php [L]
+RewriteRule ^contact$ view/contact.php [L]
 
 
 
