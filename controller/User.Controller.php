@@ -47,6 +47,9 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
                     'exp' => time() + (60 * 60 * 24 * 7), // 7 days
                     'user_id' => $userData['id'],
                     'email' => $userData['email'],
+                    'fname'   => $userData['fname'], 
+                    'lname'   => $userData['lname'], 
+                    'idnumber' => $userData['idnumber'],
                     'role' => $userData['role']
                 ];
 

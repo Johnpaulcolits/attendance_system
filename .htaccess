@@ -18,12 +18,16 @@ RewriteRule ^contact$ view/contact.php [L]
 
 
 
+
 #View/Students Directory
 RewriteRule ^dashboard$ view/students/dashboard.php [L]
 # RewriteRule ^dashboard$ /attendance_system/ [R=302,L]
+RewriteRule ^attendance$ view/students/attendance.php [L]
+
 
 #View/Admin Directory
 RewriteRule ^privatenexus$ view/admin/privatenexus.php [L]
+RewriteRule ^scan$ view/admin/scan.php [L]
 # RewriteRule ^dashboard$ /attendance_system/ [R=302,L]
 
 #View/SuperAdmin Directory
@@ -56,3 +60,5 @@ RewriteRule ^(.+)$ $1.php [L]
 # Custom 404 page
 ErrorDocument 403 /attendance_system/403.php
 ErrorDocument 404 /attendance_system/404.php
+
+

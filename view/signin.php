@@ -29,7 +29,7 @@ if (isset($_SESSION['jwt']) || isset($_COOKIE['auth_token'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="../assets/img/icon.png">
+      <link rel="icon" type="image/png" href="./public/img/logo.png">
     <title>Login - Attendance System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -97,13 +97,58 @@ if (isset($_SESSION['jwt']) || isset($_COOKIE['auth_token'])) {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        .popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(135, 206, 235, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 9999;
+}
+
+.popup-content {
+  background: linear-gradient(135deg, #87CEEB 0%, #20B2AA 100%);
+  color: #fff;
+  padding: 20px 30px;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 350px;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.check-icon {
+  font-size: 40px;
+  color: #4CAF50;
+  margin-bottom: 10px;
+}
+
+.popup.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+.error-icon {
+  color: #F44336; /* red for error */
+}
+
+
     </style>
 </head>
 <body class="gradient-bg min-h-screen flex items-center justify-center py-8">
     <!-- Loading Overlay -->
     <div id="loadingOverlay" class="loading-overlay">
         <div class="loading-spinner">
-            <div class="loading-logo"><img src="../public/img/logo.png" alt=""></div>
+            <div class="loading-logo">AS</div>
         </div>
     </div>
     
@@ -118,7 +163,7 @@ if (isset($_SESSION['jwt']) || isset($_COOKIE['auth_token'])) {
         <div class="text-center mb-8">
             <div class="flex items-center justify-center mb-4">
                 <div class="w-10 h-10 rounded-lg flex items-center justify-center">
-                    <img src="../public/img/logo.png" alt="Codebyters Logo" class="w-10 h-10 rounded-lg object-cover" />
+                    <img src="./public/img/logo.png" alt="Codebyters Logo" class="w-10 h-10 rounded-lg object-cover" />
                 </div>
                 <span class="ml-3 text-2xl font-bold text-white">Attendance System</span>
             </div>
@@ -171,6 +216,15 @@ if (isset($_SESSION['jwt']) || isset($_COOKIE['auth_token'])) {
                 <div id="successMessage" class="hidden bg-green-50 border border-green-200 text-green-600 px-4 py-3 rounded-lg">
                 </div>
 
+               <div id="popup" class="popup">
+  <div class="popup-content">
+    <div id="popupIcon" class="check-icon">✔</div>
+    <p id="popupMessage"></p>
+  </div>
+</div>
+
+
+
                 <!-- Submit Button -->
                 <button type="submit" id="submitButton"
                         class="w-full bg-gradient-to-r from-skyblue to-bluegreen text-white py-3 px-6 rounded-lg font-semibold hover:opacity-90 transition-opacity">
@@ -214,30 +268,67 @@ if (isset($_SESSION['jwt']) || isset($_COOKIE['auth_token'])) {
 
         // ✅ Handle login fetch
         document.getElementById("login").addEventListener("submit", function(e){
-            e.preventDefault();
+    e.preventDefault();
 
-            const form = e.target;
-            const formData = new FormData(form);
+    const form = e.target;
+    const formData = new FormData(form);
 
-            fetch("User.Controller", { // absolute path safer
-                method: "POST",
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log("Server Response:", data);
-                alert(data.message);
+    fetch("User.Controller", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("Server Response:", data);
 
-                if(data.status === "success"){
-                    // window.location.href = "dashboard";
+        // Popup with type
+    showPopup(data.message, data.status);
+
+        if (data.status === "success") {
+            // Wait until popup finishes (2s), then show loading
+            setTimeout(() => {
+                showLoading();
+
+                // Redirect after another 2 seconds
+                setTimeout(() => {
                     window.location.href = data.redirect;
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                alert("Something went wrong. Please try again.");
-            });
-        });
+                }, 2000);
+
+            }, 2000); // match popup auto-hide duration
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        showPopup("Something went wrong. Please try again."); // use popup instead of alert
+    });
+});
+
+
+function showPopup(message, type = "success") {
+  const popup = document.getElementById("popup");
+  const popupMessage = document.getElementById("popupMessage");
+  const popupIcon = document.getElementById("popupIcon");
+
+  popupMessage.textContent = message;
+
+  // Set icon + color based on type
+  if (type === "success") {
+    popupIcon.textContent = "✔";
+    popupIcon.className = "check-icon";
+  } else if (type === "error") {
+    popupIcon.textContent = "✖";
+    popupIcon.className = "check-icon error-icon";
+  }
+
+  popup.classList.add("active");
+
+  // Auto-hide after 2s
+  setTimeout(() => {
+    popup.classList.remove("active");
+  }, 2000);
+}
+
+
         // Loading overlay functions
         function showLoading() {
             const overlay = document.getElementById('loadingOverlay');

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="./assets/img/icon.png">
+    <link rel="icon" type="image/png" href="./public/img/logo.png">
     <title>Contact Us - Attendance System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -63,7 +63,7 @@
                      <div class="w-10 h-10 rounded-lg flex items-center justify-center">
                     <img src="./public/img/logo.png" alt="Codebyters Logo" class="w-10 h-10 rounded-lg object-cover" />
                 </div>
-                    <span class="ml-3 text-2xl font-bold text-white">Codebyters</span>
+                    <span class="ml-3 text-2xl font-bold text-white">Attendance System</span>
                 </div>
                 <button id="backHome" class="bg-white/20 backdrop-blur-sm text-white px-6 py-2 rounded-lg hover:bg-white/30 transition-colors" onclick="window.location.href='./';">
                     ← Back to Home
@@ -162,7 +162,7 @@
                         </div>
                         <h3 class="text-xl font-bold text-gray-800 ml-4">Email</h3>
                     </div>
-                    <p class="text-gray-600 ml-16">support@codebyters.com</p>
+                    <p class="text-gray-600 ml-16">support@attendacesystem.com</p>
                     <p class="text-gray-500 text-sm ml-16">We'll respond within 24 hours</p>
                 </div>
 
@@ -308,9 +308,9 @@
                 <div class="w-10 h-10 rounded-lg flex items-center justify-center">
                     <img src="./public/img/logo.png" alt="Codebyters Logo" class="w-10 h-10 rounded-lg object-cover" />
                 </div>
-                <span class="text-xl font-bold">Codebyters</span>
+                <span class="text-xl font-bold">Attendance System</span>
             </div>
-            <p class="text-gray-400">© 2024 Codebyters Attendance System. All rights reserved.</p>
+            <p class="text-gray-400">© 2024  Attendance System. All rights reserved.</p>
         </div>
     </footer>
 

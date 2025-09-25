@@ -27,21 +27,21 @@ if (isset($_SESSION['jwt']) || isset($_COOKIE['auth_token'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="./assets/img/icon.png">
+    <link rel="icon" type="image/png" href="./public/img/logo.png">
     <title>Attendance System</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'skyblue': '#87CEEB',
-                        'bluegreen': '#20B2AA'
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            'skyblue': '#87CEEB',
+                            'bluegreen': '#20B2AA'
+                        }
                     }
                 }
             }
-        }
-    </script>
+        </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; }
