@@ -8,8 +8,9 @@ include "../../auth/auth_student.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Full Attendance Record - Codebyters</title>
+    <title>Full Attendance Record</title>
     <script src="https://cdn.tailwindcss.com"></script>
+         <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -228,8 +229,35 @@ include "../../auth/auth_student.php";
                 </div>
                 <div class="flex items-center space-x-4">
                     <div class="text-right">
-                        <p class="text-white font-semibold">John Doe</p>
-                        <p class="text-white/80 text-sm">Student ID: CB2024001</p>
+                        <p class="text-white font-semibold"><?php echo $fname ." ". $lname?></p>
+                        <p class="text-white/80 text-sm"> <?php echo $idnumber ?></p>
+                    </div>
+                     <div class="relative">
+                        <button id="profileButton" class="w-12 h-12 rounded-full overflow-hidden border-2 border-white/30 hover:border-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="John Doe" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="w-full h-full bg-white rounded-full flex items-center justify-center" style="display: none;">
+                                <span class="text-bluegreen font-bold text-lg">JD</span>
+                            </div>
+                        </button>
+                        
+                        <!-- Dropdown Menu -->
+                        <div id="profileDropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible transform scale-95 transition-all duration-200 z-50">
+                            <div class="py-2">
+                                <div class="px-4 py-3 border-b border-gray-100">
+                                    <p class="text-sm font-medium text-gray-900"><?php echo $fname ." ".$lname?></p>
+                                    <p class="text-xs text-gray-500"><?php echo $role ?></p>
+                                </div>
+                                <button id="profileButtons" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center space-x-2">
+                                    <span class="text-base">👤</span>
+                                    <span>View Profile</span>
+                                </button>
+                                <hr class="my-1">
+                                <button id="logoutButton" class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center space-x-2">
+                                    <span class="text-base">🚪</span>
+                                    <span>Logout</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -596,9 +624,9 @@ include "../../auth/auth_student.php";
                 <!-- Codebyters Logo -->
                 <div class="mb-6">
                     <div class="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-3">
-                        <span class="text-white font-bold text-3xl">CB</span>
+                        <span class="text-white font-bold text-3xl">AS</span>
                     </div>
-                    <h2 class="text-2xl font-bold text-gray-900">Codebyters</h2>
+                    <h2 class="text-2xl font-bold text-gray-900">Attendance System</h2>
                     <p class="text-gray-600 text-sm">Student ID Card</p>
                 </div>
                 
@@ -632,11 +660,10 @@ include "../../auth/auth_student.php";
                         </svg>
                     </div>
                     
-                    <h3 class="text-lg font-semibold text-gray-900 mb-2">John Doe</h3>
+                     <h3 class="text-lg font-semibold text-gray-900 mb-2"><?php echo $fname ." ".$lname?></h3>
                     <div class="text-sm text-gray-600 space-y-1">
-                        <p><span class="font-medium">Year:</span> 3rd Year</p>
-                        <p><span class="font-medium">Section:</span> Computer Science - A</p>
-                        <p><span class="font-medium">Student ID:</span> CB2024001</p>
+                        <p><span class="font-medium">Year:</span> <?php echo strtoupper($year) ?> YEAR</p>
+                        <p><span class="font-medium">Course:</span> <?php echo strtoupper($course) ?></p>
                     </div>
                 </div>
                 
@@ -644,99 +671,7 @@ include "../../auth/auth_student.php";
                 <div class="bg-white border-2 border-gray-200 rounded-xl p-4 mb-6">
                     <div class="w-48 h-48 mx-auto bg-white flex items-center justify-center">
                         <!-- QR Code SVG -->
-                        <svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- QR Code pattern -->
-                            <rect width="192" height="192" fill="white"/>
-                            <!-- Corner squares -->
-                            <rect x="8" y="8" width="56" height="56" fill="black"/>
-                            <rect x="16" y="16" width="40" height="40" fill="white"/>
-                            <rect x="24" y="24" width="24" height="24" fill="black"/>
-                            
-                            <rect x="128" y="8" width="56" height="56" fill="black"/>
-                            <rect x="136" y="16" width="40" height="40" fill="white"/>
-                            <rect x="144" y="24" width="24" height="24" fill="black"/>
-                            
-                            <rect x="8" y="128" width="56" height="56" fill="black"/>
-                            <rect x="16" y="136" width="40" height="40" fill="white"/>
-                            <rect x="24" y="144" width="24" height="24" fill="black"/>
-                            
-                            <!-- Data pattern -->
-                            <rect x="72" y="8" width="8" height="8" fill="black"/>
-                            <rect x="88" y="8" width="8" height="8" fill="black"/>
-                            <rect x="104" y="8" width="8" height="8" fill="black"/>
-                            <rect x="72" y="24" width="8" height="8" fill="black"/>
-                            <rect x="96" y="24" width="8" height="8" fill="black"/>
-                            <rect x="112" y="24" width="8" height="8" fill="black"/>
-                            
-                            <rect x="8" y="72" width="8" height="8" fill="black"/>
-                            <rect x="24" y="72" width="8" height="8" fill="black"/>
-                            <rect x="40" y="72" width="8" height="8" fill="black"/>
-                            <rect x="56" y="72" width="8" height="8" fill="black"/>
-                            
-                            <rect x="72" y="40" width="8" height="8" fill="black"/>
-                            <rect x="88" y="40" width="8" height="8" fill="black"/>
-                            <rect x="104" y="40" width="8" height="8" fill="black"/>
-                            <rect x="120" y="40" width="8" height="8" fill="black"/>
-                            
-                            <rect x="72" y="56" width="8" height="8" fill="black"/>
-                            <rect x="96" y="56" width="8" height="8" fill="black"/>
-                            <rect x="112" y="56" width="8" height="8" fill="black"/>
-                            
-                            <rect x="72" y="72" width="8" height="8" fill="black"/>
-                            <rect x="88" y="72" width="8" height="8" fill="black"/>
-                            <rect x="104" y="72" width="8" height="8" fill="black"/>
-                            <rect x="120" y="72" width="8" height="8" fill="black"/>
-                            
-                            <rect x="136" y="72" width="8" height="8" fill="black"/>
-                            <rect x="152" y="72" width="8" height="8" fill="black"/>
-                            <rect x="168" y="72" width="8" height="8" fill="black"/>
-                            <rect x="184" y="72" width="8" height="8" fill="black"/>
-                            
-                            <rect x="72" y="88" width="8" height="8" fill="black"/>
-                            <rect x="96" y="88" width="8" height="8" fill="black"/>
-                            <rect x="112" y="88" width="8" height="8" fill="black"/>
-                            <rect x="136" y="88" width="8" height="8" fill="black"/>
-                            <rect x="160" y="88" width="8" height="8" fill="black"/>
-                            
-                            <rect x="72" y="104" width="8" height="8" fill="black"/>
-                            <rect x="88" y="104" width="8" height="8" fill="black"/>
-                            <rect x="120" y="104" width="8" height="8" fill="black"/>
-                            <rect x="144" y="104" width="8" height="8" fill="black"/>
-                            <rect x="168" y="104" width="8" height="8" fill="black"/>
-                            
-                            <rect x="72" y="120" width="8" height="8" fill="black"/>
-                            <rect x="96" y="120" width="8" height="8" fill="black"/>
-                            <rect x="112" y="120" width="8" height="8" fill="black"/>
-                            <rect x="128" y="120" width="8" height="8" fill="black"/>
-                            <rect x="152" y="120" width="8" height="8" fill="black"/>
-                            <rect x="176" y="120" width="8" height="8" fill="black"/>
-                            
-                            <rect x="72" y="136" width="8" height="8" fill="black"/>
-                            <rect x="88" y="136" width="8" height="8" fill="black"/>
-                            <rect x="104" y="136" width="8" height="8" fill="black"/>
-                            <rect x="128" y="136" width="8" height="8" fill="black"/>
-                            <rect x="144" y="136" width="8" height="8" fill="black"/>
-                            <rect x="168" y="136" width="8" height="8" fill="black"/>
-                            
-                            <rect x="72" y="152" width="8" height="8" fill="black"/>
-                            <rect x="96" y="152" width="8" height="8" fill="black"/>
-                            <rect x="120" y="152" width="8" height="8" fill="black"/>
-                            <rect x="136" y="152" width="8" height="8" fill="black"/>
-                            <rect x="160" y="152" width="8" height="8" fill="black"/>
-                            
-                            <rect x="72" y="168" width="8" height="8" fill="black"/>
-                            <rect x="88" y="168" width="8" height="8" fill="black"/>
-                            <rect x="104" y="168" width="8" height="8" fill="black"/>
-                            <rect x="128" y="168" width="8" height="8" fill="black"/>
-                            <rect x="152" y="168" width="8" height="8" fill="black"/>
-                            <rect x="176" y="168" width="8" height="8" fill="black"/>
-                            
-                            <rect x="72" y="184" width="8" height="8" fill="black"/>
-                            <rect x="96" y="184" width="8" height="8" fill="black"/>
-                            <rect x="112" y="184" width="8" height="8" fill="black"/>
-                            <rect x="136" y="184" width="8" height="8" fill="black"/>
-                            <rect x="168" y="184" width="8" height="8" fill="black"/>
-                        </svg>
+                           <canvas id="qrcode"></canvas>
                     </div>
                     <p class="text-xs text-gray-500 mt-2">Scan for attendance verification</p>
                 </div>
@@ -771,6 +706,31 @@ include "../../auth/auth_student.php";
     </div>
 
     <script>
+
+          // Pass PHP variables into JavaScript
+    const data = {
+      email:    "<?php echo $email; ?>",
+      fname:    "<?php echo $fname; ?>",
+      lname:    "<?php echo $lname; ?>",
+      idnumber: "<?php echo $idnumber; ?>",
+      year:     "<?php echo $year; ?>",
+      course:   "<?php echo $course; ?>",
+      role:     "<?php echo $role; ?>"
+    };
+
+    const jsonString = JSON.stringify(data);
+
+    // Generate QR code
+    QRCode.toCanvas(
+      document.getElementById("qrcode"),
+      jsonString,
+      { errorCorrectionLevel: "L" },
+      function (error) {
+        if (error) console.error(error);
+        console.log("QR Code generated!");
+      }
+    );  
+
         document.addEventListener('DOMContentLoaded', function() {
             const backButton = document.getElementById('backButton');
             const statusFilter = document.getElementById('statusFilter');
@@ -779,6 +739,66 @@ include "../../auth/auth_student.php";
             const printBtn = document.getElementById('printBtn');
             const loadMoreBtn = document.getElementById('loadMoreBtn');
             const attendanceRecords = document.querySelectorAll('.attendance-record');
+              const profileButton = document.getElementById('profileButton');
+            const profileDropdown = document.getElementById('profileDropdown');
+            const logoutButton = document.getElementById('logoutButton');
+             const ViewButton = document.getElementById('profileButtons');
+
+             // Toggle dropdown
+            profileButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isVisible = profileDropdown.classList.contains('opacity-100');
+                
+                if (isVisible) {
+                    // Hide dropdown
+                    profileDropdown.classList.remove('opacity-100', 'visible', 'scale-100');
+                    profileDropdown.classList.add('opacity-0', 'invisible', 'scale-95');
+                } else {
+                    // Show dropdown
+                    profileDropdown.classList.remove('opacity-0', 'invisible', 'scale-95');
+                    profileDropdown.classList.add('opacity-100', 'visible', 'scale-100');
+                }
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function() {
+                profileDropdown.classList.remove('opacity-100', 'visible', 'scale-100');
+                profileDropdown.classList.add('opacity-0', 'invisible', 'scale-95');
+            });
+            
+            // Prevent dropdown from closing when clicking inside it
+            profileDropdown.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+            
+            // Logout functionality with full page loading
+            logoutButton.addEventListener('click', function() {
+                if (confirm('Are you sure you want to logout?')) {
+                    // Close the dropdown first
+                    profileDropdown.classList.remove('opacity-100', 'visible', 'scale-100');
+                    profileDropdown.classList.add('opacity-0', 'invisible', 'scale-95');
+                    
+                    showLoading();
+                    
+                    // Simulate logout process
+                    setTimeout(() => {
+                        hideLoading();
+                        window.location.href="logout";
+                    }, 2000);
+                }
+            });
+
+            ViewButton.addEventListener('click', function(){
+                showLoading();
+                  // Simulate logout process
+                    setTimeout(() => {
+                        hideLoading();
+                        window.location.href="profile";
+                    }, 1000);
+
+            });
+
+            
 
             // Back button functionality
             backButton.addEventListener('click', function() {
@@ -878,7 +898,7 @@ include "../../auth/auth_student.php";
                 showLoading();
                 setTimeout(() => {
                     hideLoading();
-                    alert('Opening Profile Page... (This is a demo)');
+                    window.location.href="profile";
                 }, 500);
             });
 

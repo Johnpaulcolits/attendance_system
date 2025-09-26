@@ -299,7 +299,7 @@ if (isset($_SESSION['jwt']) || isset($_COOKIE['auth_token'])) {
     })
     .catch(error => {
         console.error("Error:", error);
-        showPopup("Something went wrong. Please try again."); // use popup instead of alert
+        showPopup("Something went wrong. Please try again.", true); // use popup instead of alert
     });
 });
 

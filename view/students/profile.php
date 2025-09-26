@@ -8,7 +8,7 @@ include "../../auth/auth_student.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard</title>
+    <title>Student Profile</title>
     <script src="https://cdn.tailwindcss.com"></script>
      <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
     <script>
@@ -239,169 +239,202 @@ include "../../auth/auth_student.php";
     </header>
 
     <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-24"> <!-- Added pb-24 for bottom nav spacing -->
-        <!-- Quick Stats -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <div class="bg-white rounded-xl shadow-md p-6 card-hover">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-gray-600 text-sm font-medium">Total Classes</p>
-                        <p class="text-3xl font-bold text-gray-900">24</p>
-                    </div>
-                    <div class="w-12 h-12 bg-skyblue/20 rounded-lg flex items-center justify-center">
-                        <span class="text-skyblue text-xl">📚</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="bg-white rounded-xl shadow-md p-6 card-hover">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-gray-600 text-sm font-medium">Present</p>
-                        <p class="text-3xl font-bold text-green-600">20</p>
-                    </div>
-                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                        <span class="text-green-600 text-xl">✅</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="bg-white rounded-xl shadow-md p-6 card-hover">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-gray-600 text-sm font-medium">Absent</p>
-                        <p class="text-3xl font-bold text-red-600">4</p>
-                    </div>
-                    <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
-                        <span class="text-red-600 text-xl">❌</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="bg-white rounded-xl shadow-md p-6 card-hover">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-gray-600 text-sm font-medium">Attendance Rate</p>
-                        <p class="text-3xl font-bold text-bluegreen">83%</p>
-                    </div>
-                    <div class="w-12 h-12 bg-bluegreen/20 rounded-lg flex items-center justify-center">
-                        <span class="text-bluegreen text-xl">📊</span>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Today's Schedule & Recent Attendance -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-            <!-- Today's Schedule -->
-            <div class="bg-white rounded-xl shadow-md p-6">
-                <h2 class="text-xl font-bold text-gray-900 mb-6">Today's Schedule</h2>
-                <div class="space-y-4">
-                    <div class="flex items-center justify-between p-4 bg-skyblue/10 rounded-lg border-l-4 border-skyblue">
-                        <div>
-                            <h3 class="font-semibold text-gray-900">Web Development</h3>
-                            <p class="text-gray-600 text-sm">Room 101 • Prof. Smith</p>
-                        </div>
-                        <div class="text-right">
-                            <p class="font-semibold text-bluegreen">9:00 AM</p>
-                            <span class="inline-block px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Present</span>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-center justify-between p-4 bg-bluegreen/10 rounded-lg border-l-4 border-bluegreen">
-                        <div>
-                            <h3 class="font-semibold text-gray-900">Database Systems</h3>
-                            <p class="text-gray-600 text-sm">Room 205 • Prof. Johnson</p>
-                        </div>
-                        <div class="text-right">
-                            <p class="font-semibold text-bluegreen">11:00 AM</p>
-                            <span class="inline-block px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Upcoming</span>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg border-l-4 border-gray-300">
-                        <div>
-                            <h3 class="font-semibold text-gray-900">Software Engineering</h3>
-                            <p class="text-gray-600 text-sm">Room 301 • Prof. Davis</p>
-                        </div>
-                        <div class="text-right">
-                            <p class="font-semibold text-bluegreen">2:00 PM</p>
-                            <span class="inline-block px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Scheduled</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+   <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Page Header -->
+    <div class="mb-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-2">Student Profile</h2>
+        
+    </div>
 
-            <!-- Recent Attendance -->
-            <div class="bg-white rounded-xl shadow-md p-6">
-                <h2 class="text-xl font-bold text-gray-900 mb-6">Recent Attendance</h2>
-                <div class="space-y-4">
-                    <div class="flex items-center justify-between py-3 border-b border-gray-100">
-                        <div>
-                            <h3 class="font-medium text-gray-900">Web Development</h3>
-                            <p class="text-gray-600 text-sm">Dec 15, 2024</p>
-                        </div>
-                        <span class="inline-block px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full font-medium">Present</span>
-                    </div>
-                    
-                    <div class="flex items-center justify-between py-3 border-b border-gray-100">
-                        <div>
-                            <h3 class="font-medium text-gray-900">Database Systems</h3>
-                            <p class="text-gray-600 text-sm">Dec 14, 2024</p>
-                        </div>
-                        <span class="inline-block px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full font-medium">Present</span>
-                    </div>
-                    
-                    <div class="flex items-center justify-between py-3 border-b border-gray-100">
-                        <div>
-                            <h3 class="font-medium text-gray-900">Software Engineering</h3>
-                            <p class="text-gray-600 text-sm">Dec 13, 2024</p>
-                        </div>
-                        <span class="inline-block px-3 py-1 bg-red-100 text-red-800 text-sm rounded-full font-medium">Absent</span>
-                    </div>
-                    
-                    <div class="flex items-center justify-between py-3 border-b border-gray-100">
-                        <div>
-                            <h3 class="font-medium text-gray-900">Web Development</h3>
-                            <p class="text-gray-600 text-sm">Dec 12, 2024</p>
-                        </div>
-                        <span class="inline-block px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full font-medium">Present</span>
-                    </div>
-                    
-                    <div class="flex items-center justify-between py-3">
-                        <div>
-                            <h3 class="font-medium text-gray-900">Database Systems</h3>
-                            <p class="text-gray-600 text-sm">Dec 11, 2024</p>
-                        </div>
-                        <span class="inline-block px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full font-medium">Present</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Profile Content -->
+    <div class="bg-white rounded-2xl shadow-xl p-8">
+        <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
+            <!-- Profile Image -->
+            <div class="flex-shrink-0 relative">
+    <img id="profilePic" src="https://via.placeholder.com/150" 
+         alt="Profile" 
+         class="w-32 h-32 rounded-full object-cover shadow-lg border">
 
-        <!-- Quick Actions -->
-        <div class="bg-white rounded-xl shadow-md p-6">
-            <h2 class="text-xl font-bold text-gray-900 mb-6">Quick Actions</h2>
-           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-    <button data-path="attendance" class="flex items-center justify-center space-x-3 p-4 gradient-bg text-white rounded-lg hover:opacity-90 transition-opacity">
-        <span class="text-xl">📋</span>
-        <span class="font-medium">View Full Attendance</span>
-    </button>
-    
-    <button data-path="schedule" class="flex items-center justify-center space-x-3 p-4 bg-skyblue text-white rounded-lg hover:bg-skyblue/90 transition-colors">
-        <span class="text-xl">📅</span>
-        <span class="font-medium">Check Schedule</span>
-    </button>
-    
-    <button data-path="report" class="flex items-center justify-center space-x-3 p-4 bg-bluegreen text-white rounded-lg hover:bg-bluegreen/90 transition-colors">
-        <span class="text-xl">📊</span>
-        <span class="font-medium">Generate Report</span>
+    <!-- Camera Icon Overlay -->
+    <button onclick="openPicModal()" 
+            class="absolute bottom-1 right-1 bg-blue-600 hover:bg-blue-700 p-2 rounded-full text-white shadow">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                  d="M3 7h2l2-3h10l2 3h2a2 2 0 012 2v9a2 2 0 01-2 2H3a2 2 0 01-2-2V9a2 2 0 012-2z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                  d="M12 13a3 3 0 100-6 3 3 0 000 6z"/>
+        </svg>
     </button>
 </div>
 
-        </div>
-    </main>
+<!-- Modal -->
+<div id="picModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+    <div class="bg-white rounded-lg shadow-xl w-full max-w-md p-6 relative">
+        <!-- Close Button -->
+        <button onclick="closePicModal()" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600">
+            ✕
+        </button>
 
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Edit Profile Picture</h2>
+
+        <!-- Upload Area -->
+        <label for="profileUpload" 
+               class="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg h-40 cursor-pointer hover:border-blue-500 transition">
+            <svg class="w-10 h-10 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                      d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1M12 12v9m0 0l-3-3m3 3l3-3M4 12a8 8 0 0116 0"/>
+            </svg>
+            <p class="text-gray-500">Click to upload</p>
+            <p class="text-xs text-gray-400">PNG, JPG, GIF up to 5MB</p>
+        </label>
+        <input type="file" id="profileUpload" accept="image/*" class="hidden" onchange="previewPic(event)">
+
+        <!-- Preview -->
+        <div class="mt-4 text-center hidden" id="previewContainer">
+            <img id="previewImage" src="" class="mx-auto w-24 h-24 rounded-full object-cover border shadow">
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex justify-end gap-3 mt-6">
+            <button onclick="closePicModal()" 
+                    class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded-md">
+                Cancel
+            </button>
+            <button onclick="savePic()" 
+                    class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md">
+                Save Picture
+            </button>
+        </div>
+    </div>
+</div>
+
+
+            <!-- Profile Information -->
+            <div class="flex-1 text-center md:text-left w-full">
+                <!-- Display Mode -->
+                <div id="profileDisplay">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-2" id="profileName"><?php echo $fname ." ". $lname?></h1>
+                    <p class="text-lg text-gray-600 mb-6" id="profileDesc">
+                        <?php
+                        if($course === "BSIT"){
+                            echo "Information Technology" ." ". "Student";
+                        }
+                        ?>
+                    </p>
+                    
+                    <!-- Profile Details Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <label class="block text-sm font-semibold text-gray-500 uppercase tracking-wide mb-1">Student ID</label>
+                            <p class="text-lg font-medium text-gray-800" id="profileID"><?php echo $idnumber?></p>
+                        </div>
+                        
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <label class="block text-sm font-semibold text-gray-500 uppercase tracking-wide mb-1">Middle Name</label>
+                            <p class="text-lg font-medium text-gray-800" id="profileEmail"><?php echo $mname ?></p>
+                        </div>
+                        
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <label class="block text-sm font-semibold text-gray-500 uppercase tracking-wide mb-1">Year</label>
+                            <p class="text-lg font-medium text-gray-800" id="profileYear"><?php echo $year?> Year</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <label class="block text-sm font-semibold text-gray-500 uppercase tracking-wide mb-1">Course</label>
+                            <p class="text-lg font-medium text-gray-800" id="profileCourse">
+                                <?php
+                                 if($course === "BSIT"){
+                            echo "BS Information Technology";
+                        }
+                                ?>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Edit Profile Button -->
+                    <button onclick="editProfile()" 
+                        class="bg-gradient-to-r from-bluegreen to-skyblue hover:from-skyblue hover:to-bluegreen text-white font-semibold py-3 px-8 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 flex items-center gap-2 mx-auto md:mx-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                        </svg>
+                        Edit Profile
+                    </button>
+                </div>
+
+                <!-- Edit Mode -->
+                <div id="profileEdit" class="hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <label class="block text-sm font-semibold text-gray-500 uppercase tracking-wide mb-1">First Name</label>
+                            <input type="text" id="firstName" class="w-full border-gray-300 rounded-lg p-2" placeholder="<?php echo $fname ?>">
+                        </div>
+
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <label class="block text-sm font-semibold text-gray-500 uppercase tracking-wide mb-1">Middle Name</label>
+                            <input type="text" id="middleName" class="w-full border-gray-300 rounded-lg p-2" placeholder="<?php echo $mname ?>">
+                        </div>
+
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <label class="block text-sm font-semibold text-gray-500 uppercase tracking-wide mb-1">Last Name</label>
+                            <input type="text" id="lastName" class="w-full border-gray-300 rounded-lg p-2" placeholder="<?php echo $lname ?>">
+                        </div>
+
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <label class="block text-sm font-semibold text-gray-500 uppercase tracking-wide mb-1">Year</label>
+                            <select name="year_level" class="w-full border-gray-300 rounded-lg p-2">
+                            <option value="<?php echo $year; ?>" selected><?php echo $year; ?></option>
+    <?php
+        $years = ["1st", "2nd", "3rd", "4th"];
+        foreach ($years as $y) {
+            if ($y != $year) {
+                echo "<option value='$y'>$y</option>";
+            }
+        }
+    ?>
+                                    </select>
+
+                        </div>
+
+                        <div class="bg-gray-50 rounded-lg p-4 md:col-span-2">
+                            <label class="block text-sm font-semibold text-gray-500 uppercase tracking-wide mb-1">Course</label>
+                            <select name="course" class="w-full border-gray-300 rounded-lg p-2">
+    <option value="<?php echo $course; ?>" selected><?php echo $course; ?></option>
+    <?php
+        $courses = [
+            "BSIT",
+            "BITM",
+            "BSM",
+            "BSCE"
+        ];
+        foreach ($courses as $c) {
+            if ($c != $course) {
+                echo "<option value='$c'>$c</option>";
+            }
+        }
+    ?>
+</select>
+
+                        </div>
+                    </div>
+
+                    <!-- Save + Cancel Buttons -->
+                    <div class="flex gap-4">
+                        <button onclick="saveProfile()" 
+                            class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md">
+                            Save
+                        </button>
+                        <button onclick="cancelEdit()" 
+                            class="bg-gray-400 hover:bg-gray-500 text-white font-semibold py-2 px-6 rounded-lg shadow-md">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
     <!-- QR Code Modal -->
     <div id="qrModal" class="qr-modal">
         <div class="qr-modal-content">
@@ -585,21 +618,21 @@ include "../../auth/auth_student.php";
             });
             
             // Add click handlers for Quick Action buttons with full page loading
-           const quickActionButtons = document.querySelectorAll('.grid button');
+//            const quickActionButtons = document.querySelectorAll('.grid button');
 
-quickActionButtons.forEach(button => {
-    button.addEventListener('click', function () {
-        const actionName = this.querySelector('.font-medium').innerText;
-        const path = this.dataset.path; // 👈 get path from button
+// quickActionButtons.forEach(button => {
+//     button.addEventListener('click', function () {
+//         const actionName = this.querySelector('.font-medium').innerText;
+//         const path = this.dataset.path; // 👈 get path from button
 
-        showLoading();
+//         showLoading();
 
-        setTimeout(() => {
-            hideLoading();
-            window.location.href = path; // 👈 redirect based on button
-        }, 1000);
-    });
-});
+//         setTimeout(() => {
+//             hideLoading();
+//             window.location.href = path; // 👈 redirect based on button
+//         }, 1000);
+//     });
+// });
 
             
             // Loading overlay functions
@@ -693,6 +726,61 @@ quickActionButtons.forEach(button => {
                 }, 500);
             });
         });
+
+
+        function editProfile() {
+    document.getElementById("profileDisplay").classList.add("hidden");
+    document.getElementById("profileEdit").classList.remove("hidden");
+}
+
+function cancelEdit() {
+    document.getElementById("profileEdit").classList.add("hidden");
+    document.getElementById("profileDisplay").classList.remove("hidden");
+}
+
+function saveProfile() {
+    // Get values
+    let fname = document.getElementById("firstName").value;
+    let mname = document.getElementById("middleName").value;
+    let lname = document.getElementById("lastName").value;
+    let year = document.getElementById("yearLevel").value;
+    let course = document.getElementById("course").value;
+
+    // Update display
+    document.getElementById("profileName").innerText = fname + " " + lname;
+    document.getElementById("profileDesc").innerText = course + " Student";
+    document.getElementById("profileYear").innerText = year;
+    document.getElementById("profileCourse").innerText = course;
+
+    // Switch back
+    cancelEdit();
+}
+
+function openPicModal() {
+    document.getElementById("picModal").classList.remove("hidden");
+}
+function closePicModal() {
+    document.getElementById("picModal").classList.add("hidden");
+    document.getElementById("profileUpload").value = ""; // reset file input
+}
+function previewPic(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = e => {
+            document.getElementById("previewImage").src = e.target.result;
+            document.getElementById("previewContainer").classList.remove("hidden");
+        }
+        reader.readAsDataURL(file);
+    }
+}
+function savePic() {
+    const preview = document.getElementById("previewImage").src;
+    if (preview) {
+        document.getElementById("profilePic").src = preview; // update profile picture
+    }
+    closePicModal();
+}
     </script>
 </body>
 </html>

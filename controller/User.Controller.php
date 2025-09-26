@@ -48,8 +48,11 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
                     'user_id' => $userData['id'],
                     'email' => $userData['email'],
                     'fname'   => $userData['fname'], 
+                    'mname'   => $userData['mname'], 
                     'lname'   => $userData['lname'], 
                     'idnumber' => $userData['idnumber'],
+                    'year' => $userData['year'],
+                     'course' => $userData['course'],
                     'role' => $userData['role']
                 ];
 

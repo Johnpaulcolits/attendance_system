@@ -18,6 +18,7 @@ $token = $_SESSION['jwt'] ?? $_COOKIE['auth_token'];
 try{
     $decode = JWT::decode($token, new Key($secret_key, 'HS256'));
     $email = htmlspecialchars($decode->email);
+    $fname = htmlspecialchars($decode->fname);
     $role = htmlspecialchars($decode->role);
 
     if($role === "student"){

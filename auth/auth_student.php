@@ -19,8 +19,11 @@ try{
     $decode = JWT::decode($token, new Key($secret_key, 'HS256'));
     $email = htmlspecialchars($decode->email);
     $fname = htmlspecialchars($decode->fname);
+    $mname = htmlspecialchars($decode->mname);
     $lname = htmlspecialchars($decode->lname);
     $idnumber = htmlspecialchars($decode->idnumber);
+    $year = htmlspecialchars($decode->year);
+    $course = htmlspecialchars($decode->course);
     $role = htmlspecialchars($decode->role);
 
     if($role === "admin"){

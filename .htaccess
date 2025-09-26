@@ -23,6 +23,7 @@ RewriteRule ^contact$ view/contact.php [L]
 RewriteRule ^dashboard$ view/students/dashboard.php [L]
 # RewriteRule ^dashboard$ /attendance_system/ [R=302,L]
 RewriteRule ^attendance$ view/students/attendance.php [L]
+RewriteRule ^profile$ view/students/profile.php [L]
 
 
 #View/Admin Directory

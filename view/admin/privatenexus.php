@@ -9,7 +9,7 @@ include "../../auth/auth_admin.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Attendance Management System</title>
+    <title>Attendance System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -93,8 +93,8 @@ include "../../auth/auth_admin.php";
                     </svg>
                 </div>
                 <div>
-                    <h1 class="text-xl font-bold">AttendanceHub</h1>
-                    <p class="text-sm opacity-80">Management System</p>
+                    <h1 class="text-xl font-bold">AttendanceSys</h1>
+                    <p class="text-sm opacity-80">Attendance System</p>
                 </div>
             </div>
 
@@ -150,8 +150,8 @@ include "../../auth/auth_admin.php";
                     <span class="text-bluegreen font-bold">HR</span>
                 </div>
                 <div>
-                    <p class="font-semibold">HR Manager</p>
-                    <p class="text-sm opacity-80">Administrator</p>
+                    <p class="font-semibold"><?php echo $fname ?></p>
+                    <p class="text-sm opacity-80"><?php echo $role ?></p>
                 </div>
             </div>
         </div>
